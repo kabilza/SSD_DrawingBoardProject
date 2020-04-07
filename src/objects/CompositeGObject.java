@@ -28,13 +28,16 @@ public class CompositeGObject extends GObject {
 		// TODO: Implement this method.
 	}
 	
-	public void recalculateRegion() {
+	public void recalculateRegion(int dX, int dY) {
 		// TODO: Implement this method.
+		this.x += dX;
+		this.y += dY;
 	}
 
 	@Override
 	public void paintObject(Graphics g) {
 		// TODO: Implement this method.
+		
 	}
 
 	@Override

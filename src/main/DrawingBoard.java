@@ -26,15 +26,16 @@ public class DrawingBoard extends JPanel {
 	public void addGObject(GObject gObject) {
 		// TODO: Implement this method.
 		gObjects.add(gObject);
-		int sum = 0;
-		for (GObject go : gObjects) {
-			sum += 1;
-		}
-		System.out.println(sum);
+		repaint();
 	}
 	
 	public void groupAll() {
 		// TODO: Implement this method.
+		CompositeGObject compositeGObject = new CompositeGObject();
+		for (GObject object : gObjects) {
+			object.deselected();
+			compositeGObject.add(object);
+		}
 	}
 
 	public void deleteSelected() {

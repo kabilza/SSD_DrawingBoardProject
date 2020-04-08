@@ -22,13 +22,13 @@ public class DrawingBoard extends JPanel {
 		addMouseMotionListener(mouseAdapter);
 		setPreferredSize(new Dimension(800, 600));
 	}
-	
+
 	public void addGObject(GObject gObject) {
 		// TODO: Implement this method.
 		gObjects.add(gObject);
 		repaint();
 	}
-	
+
 	public void groupAll() {
 		// TODO: Implement this method.
 		CompositeGObject compositeGObject = new CompositeGObject();

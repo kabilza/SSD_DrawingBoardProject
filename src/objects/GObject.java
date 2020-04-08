@@ -73,5 +73,5 @@ public abstract class GObject {
 	public abstract void paintObject(Graphics g);
 
 	public abstract void paintLabel(Graphics g);
-	
+
 }

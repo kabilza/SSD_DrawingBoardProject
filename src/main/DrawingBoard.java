@@ -35,6 +35,7 @@ public class DrawingBoard extends JPanel {
 		for (GObject object : gObjects) {
 			object.deselected();
 			compositeGObject.add(object);
+			repaint();
 		}
 	}
 
@@ -46,6 +47,7 @@ public class DrawingBoard extends JPanel {
 	public void clear() {
 		// TODO: Implement this method.
 		gObjects.clear();
+		repaint();
 	}
 	
 	@Override
@@ -114,12 +116,14 @@ public class DrawingBoard extends JPanel {
 			System.out.println(mouseX);
 			System.out.println("and ");
 			System.out.println(mouseY);
+
 		}
 
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			// TODO: Implement this method.
+
 
 			int deltaX = 0;
 			int deltaY = 0;

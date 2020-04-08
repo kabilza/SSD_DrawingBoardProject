@@ -83,14 +83,15 @@ public class DrawingBoard extends JPanel {
 
 		// TODO: You need some variables here
 
-		int mouseX = 0;
-		int mouseY = 0;
+		private int mouseX = 0;
+		private int mouseY = 0;
 
 		private void deselectAll() {
 			// TODO: Implement this method.
-			for (GObject go : gObjects) {
-				go.deselected();
+			if(target != null){
+				target.deselected();
 			}
+			target = null;
 			repaint();
 		}
 		
@@ -98,17 +99,32 @@ public class DrawingBoard extends JPanel {
 		public void mousePressed(MouseEvent e) {
 			// TODO: Implement this method.
 
-			deselectAll();
+			int x = e.getX();
+			int y = e.getY();
+			this.mouseX = x;
+			this.mouseY = y;
+
+			boolean collision = false;
 			target = null;
 
 			for (GObject go : gObjects) {
-				if (go.pointerHit(e.getX(), e.getY())) {
+				if (go.pointerHit(mouseX, mouseY)) {
+					if(target != null){
+						target.deselected();
+					}
 					go.selected();
 					target = go;
+					gObjects.remove(go);
+					gObjects.add(go);
+					collision = true;
 				}
 			}
 			mouseX = e.getX();
 			mouseY = e.getY();
+
+			if(!collision){
+				deselectAll();
+			}
 			repaint();
 			System.out.println("Mouse Pressed on ");
 			System.out.println(mouseX);
@@ -121,11 +137,14 @@ public class DrawingBoard extends JPanel {
 		public void mouseDragged(MouseEvent e) {
 			// TODO: Implement this method.
 
-			int deltaX = 0;
-			int deltaY = 0;
-			deltaX = e.getX() - deltaX;
-			deltaY = e.getY() - deltaY;
-			target.move(deltaX, deltaY);
+			int mouseX = e.getX();
+			int mouseY = e.getY();
+
+			if(target != null){
+				target.move( mouseX-this.mouseX, mouseY-this.mouseY);
+			}
+			this.mouseX = mouseX;
+			this.mouseY = mouseY;
 			repaint();
 		}
 	}

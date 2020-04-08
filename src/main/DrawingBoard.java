@@ -78,37 +78,58 @@ public class DrawingBoard extends JPanel {
 	private void paintObjects(Graphics g) {
 		for (GObject go : gObjects) {
 			go.paint(g);
-			System.out.println("DrawingBoard.paintObjects");
 		}
 	}
 
 	class MAdapter extends MouseAdapter {
 
 		// TODO: You need some variables here
-		
+
+		int mouseX = 0;
+		int mouseY = 0;
+
 		private void deselectAll() {
 			// TODO: Implement this method.
+			for (GObject go : gObjects) {
+				go.deselected();
+			}
+			repaint();
 		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO: Implement this method.
+
+			deselectAll();
+			target = null;
+
 			for (GObject go : gObjects) {
-				if(go.pointerHit(e.getX(), e.getY())){
+				if (go.pointerHit(e.getX(), e.getY())) {
 					go.selected();
 					target = go;
 				}
-				else{
-					go.deselected();
-				}
 			}
+			mouseX = e.getX();
+			mouseY = e.getY();
 			repaint();
+			System.out.println("Mouse Pressed on ");
+			System.out.println(mouseX);
+			System.out.println("and ");
+			System.out.println(mouseY);
+
 		}
+
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			// TODO: Implement this method.
-			target.move(e.getX(), e.getY());
+
+
+			int deltaX = 0;
+			int deltaY = 0;
+			deltaX = e.getX() - deltaX;
+			deltaY = e.getY() - deltaY;
+			target.move(deltaX, deltaY);
 			repaint();
 		}
 	}

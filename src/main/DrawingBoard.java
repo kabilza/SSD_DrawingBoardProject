@@ -31,11 +31,7 @@ public class DrawingBoard extends JPanel {
 
 	public void groupAll() {
 		// TODO: Implement this method.
-		CompositeGObject compositeGObject = new CompositeGObject();
-		for (GObject object : gObjects) {
-			object.deselected();
-			compositeGObject.add(object);
-		}
+	
 	}
 
 	public void deleteSelected() {
@@ -46,6 +42,7 @@ public class DrawingBoard extends JPanel {
 	public void clear() {
 		// TODO: Implement this method.
 		gObjects.clear();
+		repaint();
 	}
 	
 	@Override

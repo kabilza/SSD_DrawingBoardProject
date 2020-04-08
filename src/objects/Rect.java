@@ -27,7 +27,7 @@ public class Rect extends GObject  {
 	public void paintLabel(Graphics g) {
 		// TODO: Implement this method.
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawString("Rec",x,y);
+		g2d.drawString("Rec",x,y+65);
 		}
 	}
 	

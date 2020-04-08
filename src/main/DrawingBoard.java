@@ -46,6 +46,7 @@ public class DrawingBoard extends JPanel {
 	public void clear() {
 		// TODO: Implement this method.
 		gObjects.clear();
+		repaint();
 	}
 	
 	@Override

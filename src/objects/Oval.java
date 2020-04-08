@@ -20,7 +20,6 @@ public class Oval extends GObject {
 		g2d.setStroke(new BasicStroke(3));
 		g2d.drawOval(x, y, width, height);
 		g2d.fillOval(x, y, width, height);
-		System.out.println("PaintOval color");
 	}
 	
 	@Override

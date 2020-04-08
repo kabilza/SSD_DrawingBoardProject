@@ -31,7 +31,12 @@ public class DrawingBoard extends JPanel {
 
 	public void groupAll() {
 		// TODO: Implement this method.
-	
+		CompositeGObject compositeGObject = new CompositeGObject();
+		for (GObject object : gObjects) {
+			object.deselected();
+			compositeGObject.add(object);
+			repaint();
+		}
 	}
 
 	public void deleteSelected() {
@@ -73,36 +78,77 @@ public class DrawingBoard extends JPanel {
 	private void paintObjects(Graphics g) {
 		for (GObject go : gObjects) {
 			go.paint(g);
-			System.out.println("DrawingBoard.paintObjects");
 		}
 	}
 
 	class MAdapter extends MouseAdapter {
 
 		// TODO: You need some variables here
-		
+
+		private int mouseX = 0;
+		private int mouseY = 0;
+
 		private void deselectAll() {
 			// TODO: Implement this method.
+			if(target != null){
+				target.deselected();
+			}
+			target = null;
+			repaint();
 		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO: Implement this method.
+
+			int x = e.getX();
+			int y = e.getY();
+			this.mouseX = x;
+			this.mouseY = y;
+
+			boolean collision = false;
+			target = null;
+
 			for (GObject go : gObjects) {
-				if(go.pointerHit(e.getX(), e.getY())){
+				if (go.pointerHit(mouseX, mouseY)) {
+					if(target != null){
+						target.deselected();
+					}
 					go.selected();
 					target = go;
-				}
-				else{
-					go.deselected();
+					gObjects.remove(go);
+					gObjects.add(go);
+					collision = true;
 				}
 			}
+			mouseX = e.getX();
+			mouseY = e.getY();
+
+			if(!collision){
+				deselectAll();
+			}
+			repaint();
+			System.out.println("Mouse Pressed on ");
+			System.out.println(mouseX);
+			System.out.println("and ");
+			System.out.println(mouseY);
+
 		}
+
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			// TODO: Implement this method.
-			target.move(e.getX(), e.getY());
+
+			int mouseX = e.getX();
+			int mouseY = e.getY();
+
+			if(target != null){
+				target.move( mouseX-this.mouseX, mouseY-this.mouseY);
+			}
+			this.mouseX = mouseX;
+			this.mouseY = mouseY;
+			repaint();
 		}
 	}
 	

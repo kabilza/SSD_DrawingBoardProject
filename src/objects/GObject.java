@@ -25,12 +25,7 @@ public abstract class GObject {
 
 	public boolean pointerHit(int pointerX, int pointerY) {
 		// TODO: Implement this method.
-		if(( pointerX >= x ) && ( pointerX <= x + width)){
-			System.out.println("Mouse Hit Object!");
-			return true;
-		}
-		if(( pointerY >= y ) && ( pointerY <= x + height)){
-			System.out.println("Mouse Hit Object!");
+		if((( pointerX >= x ) && ( pointerX <= x + width)) && (( pointerY >= y ) && ( pointerY <= y + height))){
 			return true;
 		}
 		else{
@@ -40,17 +35,17 @@ public abstract class GObject {
 	
 	public void selected() {
 		// TODO: Implement this method.
-		this.selected = true;
+		selected = true;
 	}
 	
 	public void deselected() {
 		// TODO: Implement this method.
-		this.selected = false;
+		selected = false;
 	}
 	
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
-		if(selected) {
+		if(selected){
 			this.x += dX;
 			this.y += dY;
 		}

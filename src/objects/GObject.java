@@ -25,7 +25,7 @@ public abstract class GObject {
 
 	public boolean pointerHit(int pointerX, int pointerY) {
 		// TODO: Implement this method.
-		if((this.x == pointerX) && (this.y == pointerY)){
+		if((( pointerX >= x ) && ( pointerX <= x + width)) && (( pointerY >= y ) && ( pointerY <= y + height))){
 			return true;
 		}
 		else{
@@ -35,18 +35,20 @@ public abstract class GObject {
 	
 	public void selected() {
 		// TODO: Implement this method.
-		this.selected = true;
+		selected = true;
 	}
 	
 	public void deselected() {
 		// TODO: Implement this method.
-		this.selected = false;
+		selected = false;
 	}
 	
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
-		this.x += dX;
-		this.y += dY;
+		if(selected){
+			this.x += dX;
+			this.y += dY;
+		}
 	}
 
 	public final void paint(Graphics g) {
@@ -54,7 +56,6 @@ public abstract class GObject {
 		paintObject(g);
 		paintRegion(g);
 		paintLabel(g);
-		System.out.println("GObject.Paint");
 	}
 
 	public void paintRegion(Graphics g) {
@@ -67,11 +68,10 @@ public abstract class GObject {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(size));
 		g2d.drawRect(x, y, width, height);
-		System.out.println("PaintRegion");
 	}
 
 	public abstract void paintObject(Graphics g);
 
 	public abstract void paintLabel(Graphics g);
-	
+
 }

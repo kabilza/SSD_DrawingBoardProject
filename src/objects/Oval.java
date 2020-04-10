@@ -1,5 +1,6 @@
 package objects;
 
+
 import java.awt.*;
 
 public class Oval extends GObject {
@@ -19,12 +20,13 @@ public class Oval extends GObject {
 		g2d.setStroke(new BasicStroke(3));
 		g2d.drawOval(x, y, width, height);
 		g2d.fillOval(x, y, width, height);
-		System.out.println("PaintOval color");
 	}
 	
 	@Override
 	public void paintLabel(Graphics g) {
 		// TODO: Implement this method.
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawString("Oval",x,y+65);
 	}
 	
 }

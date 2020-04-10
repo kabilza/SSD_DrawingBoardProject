@@ -29,10 +29,12 @@ public class CompositeGObject extends GObject {
 	@Override
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
+		this.x += dX;
+		this.y += dY;
 		for(GObject item : gObjects) {
+			item.selected();
 			item.move(dX, dY);
 		}
-		recalculateRegion();
 	}
 
 

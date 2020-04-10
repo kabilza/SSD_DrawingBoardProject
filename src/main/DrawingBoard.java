@@ -42,6 +42,7 @@ public class DrawingBoard extends JPanel {
 	public void deleteSelected() {
 		// TODO: Implement this method.
 		gObjects.remove(target);
+		repaint();
 	}
 	
 	public void clear() {

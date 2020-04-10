@@ -1,6 +1,6 @@
 # SSD_DrawingBoardProject
 
-## This Project created by
+## This Project was created by
 
 - Jirawadee Sampusri      6110545457
 - Pawaris Wongsalung      6110545562
